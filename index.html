@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+    <link rel="shortcut icon" href="image1.png" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="min-h-screen p-1 overflow-y-auto lg:overflow-hidden sm:p-2 lg:p-3 bg-slate-100"
+  >
+    <!-- MAIN APP -->
+    <div
+      class="container mx-auto flex flex-col lg:flex-row min-h-[calc(100vh-2rem)] lg:min-h-0 lg:h-[97vh] max-w-[1450px] overflow-hidden border border-slate-200 rounded-2xl shadow-[0_10px_45px_rgba(0,0,0,0,0.08)]"
+    >
+      <!-- LEFT CONTAINER -->
+      <div
+        class="left-container w-full shrink-0 overflow-hidden lg:w-[390px] bg-white border-b lg:border-b-0 lg:border-r border-slate-200 p-2 lg:p-6"
+      >
+        <!-- APP HEADER -->
+        <div class="header mb-5 lg:mb-7">
+          <div class="todo flex items-center gap-3">
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-500 text-white shadow-sm"
+            >
+              <span class="material-symbols-outlined">
+                assignment_turned_in
+              </span>
+            </div>
+            <h1 class="text-2xl text-slate-900 font-semibold tracking-tight">
+              Todo App
+            </h1>
+          </div>
+          <p class="sm:text-[16px] text-slate-500 mt-1">
+            Organize your tasks. Get things done.
+          </p>
+        </div>
+
+        <!-- ADD TODO -->
+
+        <div
+          class="inputcontainer border border-slate-200 bg-white shadow-sm rounded-xl p-4"
+        >
+          <div class="input-heading flex items-center mb-5 gap-2">
+            <span class="material-symbols-outlined add text-indigo-500">
+              assignment_add
+            </span>
+            <h2 class="text-lg font-semibold text-slate-900">Add new Todo</h2>
+          </div>
+
+          <!-- TITLE -->
+          <label
+            for="inputTask"
+            class="mb-2 block text-sm font-medium text-slate-700"
+          >
+            Title
+          </label>
+
+          <input
+            class="mb-5 h-[44px] w-full rounded-lg border border-slate-200 bg-white px-2 text-sm text-slate-700 outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+            type="text"
+            placeholder="What do you need to do today ?"
+            id="inputTask"
+          />
+
+          <!-- DESCRIPTION -->
+
+          <label
+            for="description"
+            class="mb-2 block text-sm font-medium text-slate-700"
+          >
+            Description
+          </label>
+
+          <textarea
+            id="description"
+            placeholder="Add a short description..."
+            class="mb-4 h-[90px] w-full resize-y rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-700 outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+          ></textarea>
+
+          <!-- ADD BUTTON -->
+          <button
+            id="addbutton"
+            class="w-full h-[45px] rounded-lg bg-indigo-500 hover:bg-indigo-600 cursor-pointer text-[16px] text-white font-medium transition duration-200 active:scale-[0.98]"
+          >
+            + Add Todo
+          </button>
+        </div>
+
+        <!-- SUMMARY -->
+        <div
+          class="summary-container border shadow-sm bg-white p-4 border-slate-200 rounded-xl mt-6"
+        >
+          <div id="stats">
+            <div class="summary mb-2 flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-indigo-500">
+                pie_chart
+              </span>
+              <h2 class="text-lg font-semibold text-slate-900">Summary</h2>
+            </div>
+
+            <div class="flex flex-col gap-2">
+              <!-- Total -->
+              <div
+                class="bg-white rounded-lg shadow-sm border border-slate-200 px-2 flex items-center gap-3 hover:shadow-md transition h-[55px]"
+              >
+                <div
+                  class="w-10 h-10 shrink-0 rounded-lg bg-indigo-100 flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined">task</span>
+                </div>
+
+                <div class="flex justify-between items-center flex-1">
+                  <div class="all-tasks">
+                    <p class="text-sm font-medium text-slate-700">
+                      Total Todos
+                    </p>
+                    <p class="text-xs text-slate-400">All Tasks</p>
+                  </div>
+
+                  <span
+                    id="totalTasks"
+                    class="text-2xl font-semibold text-violet-500"
+                    >0</span
+                  >
+                </div>
+              </div>
+
+              <!-- Completed -->
+              <div
+                class="bg-white rounded-lg shadow-sm border border-slate-200 px-2 flex items-center gap-3 hover:shadow-md transition h-[55px]"
+              >
+                <div
+                  class="w-10 h-10 shrink-0 rounded-lg bg-green-100 flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined">done_all</span>
+                </div>
+
+                <div class="flex justify-between items-center flex-1">
+                  <div class="completed-task">
+                    <p class="text-sm font-medium text-slate-700">Done</p>
+                    <p class="text-slate-400 text-xs">Completed Tasks</p>
+                  </div>
+                  <span
+                    id="completedTasks"
+                    class="text-2xl font-semibold text-green-500"
+                  >
+                    0
+                  </span>
+                </div>
+              </div>
+
+              <!-- Pending -->
+              <div
+                class="bg-white rounded-lg shadow-sm border border-slate-200 px-2 flex items-center gap-3 hover:shadow-md transition h-[55px]"
+              >
+                <div
+                  class="w-10 h-10 rounded-lg bg-orange-100 flex items-center justify-center"
+                >
+                  <span class="material-symbols-outlined">pending_actions</span>
+                </div>
+
+                <div class="flex justify-between items-center flex-1">
+                  <div class="pending-task">
+                    <p class="text-sm font-medium text-slate-600">Pending</p>
+                    <p class="text-slate-400 text-xs">Tasks in Progress</p>
+                  </div>
+                  <span
+                    id="pendingTasks"
+                    class="text-2xl font-semibold text-orange-500"
+                    >0</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-container bg-white flex flex-1 flex-col w-full min-w-0">
+        <div
+          class="header flex flex-col sm:flex-row justify-between items-center sm:items-center m-2 px-3 py-2 sm:px-5"
+        >
+          <div
+            class="flex items-center gap-3 order-2 sm:order-1 w-full sm:w-auto mt-4 sm:mt-0"
+          >
+            <div class="">
+              <span
+                class="material-symbols-outlined w-9 h-9 rounded-lg text-indigo-500 bg-indigo-100 flex justify-center items-center p-1.5"
+              >
+                format_list_bulleted
+              </span>
+            </div>
+            <h2 class="sm:text-xl font-semibold text-slate-900">Your Todos</h2>
+          </div>
+
+          <div
+            class="filter-sort flex gap-2 sm:gap-3 order-1 sm:order-2 w-full sm:w-auto"
+          >
+            <div class="relative flex-1 sm:flex-none">
+              <select
+                id="filterTasks"
+                class="bg-white w-full appearance-none border border-slate-200 rounded-lg px-3 text-sm text-slate-600 shadow-sm outline:none hover:border-indigo-400 transition focus:border-indigo-400 lg:w-[170px] h-[40px]"
+              >
+                <option value="all">Filter by : All</option>
+                <option value="done">Filter by : Done</option>
+                <option value="pending">Filter by : Pending</option>
+              </select>
+              <svg
+                class="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </div>
+
+            <div class="relative flex-1 sm:flex-none">
+              <select
+                id="sortTasks"
+                class="bg-white w-full appearance-none border border-slate-200 rounded-lg px-3 text-sm text-slate-600 shadow-sm outline:none hover:border-indigo-400 transition focus:border-indigo-400 sm:w-[170px] h-[40px]"
+              >
+                <option value="newest">Sort by : Oldest</option>
+                <option value="oldest">Sort by : Newest</option>
+              </select>
+
+              <svg
+                class="pointer-events-none absolute right-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-500"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="m6 9 6 6 6-6"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="task-container lg:relative grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 p-2 flex-1 overflow-y-auto px-4 pb-6"
+          id="tasks"
+        >
+          <div
+            id="emptyTask"
+            class="flex flex-col md:justify-center lg:absolute lg:inset-0 overflow-hidden justify-center items-center gap-1 text-xl text-center"
+          >
+            <p class="text-2xl">📝</p>
+            <p class="text-xl font-semibold text-slate-900">No Tasks yet</p>
+            <p class="text-base font-medium text-slate-700">
+              Start by adding your first task
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="./src/main.js" type="module"></script>
+  </body>
+</html>
